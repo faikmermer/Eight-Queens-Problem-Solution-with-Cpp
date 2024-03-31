@@ -24,7 +24,7 @@ void backtracking(std::array<std::array<int, arraySize>, arraySize> &chess, int 
 	std::array<std::array<int, arraySize>, arraySize> chess = {};
 	chess[row][col] = queens; //ilk vezirimizi yerleştiriyoruz.
 
-    forbiddenMove(chess, row, col, queens);
+        forbiddenMove(chess, row, col, queens);
 	eigthQueensProblem(chess, queens, row + 1);
 	displayMap(chess, arraySize);
 	
@@ -37,17 +37,17 @@ int eigthQueensProblem(std::array<std::array<int, arraySize>, arraySize> &chess,
 
 	for(unsigned int i = 0; i < arraySize; ++i){
 
-       	if(chess[row][i] == 0){
+            if(chess[row][i] == 0){
 			
-			chess[row][i] = ++queens;
-			forbiddenMove(chess, row, i, queens);
+		chess[row][i] = ++queens;
+		forbiddenMove(chess, row, i, queens);
 			
-			if(eigthQueensProblem(chess, queens, row + 1))
-				return 1;
+		if(eigthQueensProblem(chess, queens, row + 1))
+			return 1;
 			
-		    chess[row][i] = 0;
-		    backtracking(chess, row, queens);	
-		    --queens;
+		chess[row][i] = 0;
+		backtracking(chess, row, queens);	
+		--queens;
 		}
 	}
 	
@@ -68,31 +68,31 @@ void forbiddenMove(std::array<std::array<int, arraySize>, arraySize> &chess, int
 		    chess[row][col + 1 + i] = - queens;
 		
 		if(row + 1 + i < 8 && chess[row + 1 + i][col] == 0)
-			chess[row + 1 + i][col] = - queens;
+		    chess[row + 1 + i][col] = - queens;
 		
 		if(row - 1 - i >= 0 && chess[row - 1 - i][col] == 0)
-            chess[row - 1 - i][col] = - queens;
+                    chess[row - 1 - i][col] = - queens;
 		
 		//çarpraz -1 ile doldur
-        if(row - 1 - i >= 0 && col - 1 - i >= 0 && chess[row - 1 - i][col - 1 - i] == 0)
-            chess[row - 1 - i][col - 1 - i] = - queens;
+                if(row - 1 - i >= 0 && col - 1 - i >= 0 && chess[row - 1 - i][col - 1 - i] == 0)
+                   chess[row - 1 - i][col - 1 - i] = - queens;
         
-		if(row + 1 + i < 8 && col + 1 + i < 8 && chess[row + 1 + i][col + 1 + i] == 0)
-            chess[row + 1 + i][col + 1 + i] = - queens;
+	       if(row + 1 + i < 8 && col + 1 + i < 8 && chess[row + 1 + i][col + 1 + i] == 0)
+                  chess[row + 1 + i][col + 1 + i] = - queens;
 		
-		if(row + 1 + i < 8 && col - 1 - i >= 0 && chess[row + 1 + i][col - 1 - i] == 0)
-			chess[row + 1 + i][col - 1 - i] = - queens;
+               if(row + 1 + i < 8 && col - 1 - i >= 0 && chess[row + 1 + i][col - 1 - i] == 0)
+	          chess[row + 1 + i][col - 1 - i] = - queens;
 		
-		if(row - 1 - i >= 0 && col + 1 + i < 8 && chess[row - 1 - i][col + 1 + i] == 0)
-            chess[row - 1 - i][col + 1 + i] = - queens;
+	       if(row - 1 - i >= 0 && col + 1 + i < 8 && chess[row - 1 - i][col + 1 + i] == 0)
+                  chess[row - 1 - i][col + 1 + i] = - queens;
 	}	
 }
 void displayMap(std::array<std::array<int, arraySize>, arraySize> &chess, const size_t arraySize){
 	
 	for(unsigned int i = 0; i < arraySize; ++i){
 		for(unsigned int j = 0; j < arraySize; ++j){
-			if(chess[i][j] < 0)
-				chess[i][j] = 0;
+		    if(chess[i][j] < 0)
+			chess[i][j] = 0;
 			
 			std::cout<<std::right<<std::setw(6)<<chess[i][j]<<" ";
 		}
